@@ -8,11 +8,21 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <title>Судоходная компания «Волжское пароходство»</title>
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#184780">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+
     <!-- шрифты -->
     <link rel="preload" href="./fonts/OpenSans-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="./fonts/OpenSans-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href="./fonts/OpenSans-SemiBold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href="./fonts/factora-bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+    <link rel="preload" href="./fonts/FactorA-Bold.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="vendors/swiper/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/common.css?v=1" />
@@ -21,10 +31,14 @@
 <body>
     <main class="main">
         <header class='header'>
+            <!-- <div class='img'> <img src="img/header_img.png" alt=""></div> -->
             <div class="header_top">
                 <div class='container header_container'>
                     <div class='logo header_logo'>
-                        <img src="img/logo.png" alt="">
+                        <picture>
+                            <source media="(max-width: 576px)" srcset="img/logo.svg">
+                            <img src="img/logo.png">
+                        </picture>
                     </div>
                     <div class='menu_btn'><span></span></div>
                 </div>
@@ -39,7 +53,10 @@
             <div class="header_top">
                 <div class='container header_container'>
                     <div class='logo header_logo'>
-                        <img src="img/logo_white.png" alt="">
+                        <picture>
+                            <source media="(max-width: 576px)" srcset="img/logo_white.svg">
+                            <img src="img/logo_white.png">
+                        </picture>
                     </div>
                     <div class='menu_btn'><span></span></div>
                 </div>
@@ -200,83 +217,101 @@
                 <div class='types_cargo_list'>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_01">
-                                </use>
-                            </svg>
-                            Щебень
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_01">
+                                    </use>
+                                </svg>
+                                Щебень
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_02">
-                                </use>
-                            </svg>
-                            Зерно
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_02">
+                                    </use>
+                                </svg>
+                                Зерно
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_03">
-                                </use>
-                            </svg>
-                            Сера
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_03">
+                                    </use>
+                                </svg>
+                                Сера
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_04">
-                                </use>
-                            </svg>
-                            Лесные <br />грузы
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_04">
+                                    </use>
+                                </svg>
+                                Лесные <br />грузы
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_05">
-                                </use>
-                            </svg>
-                            Уголь
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_05">
+                                    </use>
+                                </svg>
+                                Уголь
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_06">
-                                </use>
-                            </svg>
-                            Удобрения
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_06">
+                                    </use>
+                                </svg>
+                                Удобрения
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_07">
-                                </use>
-                            </svg>
-                            Металл
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_07">
+                                    </use>
+                                </svg>
+                                Металл
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_08">
-                                </use>
-                            </svg>
-                            Проектные <br />грузы
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_08">
+                                    </use>
+                                </svg>
+                                Проектные <br />грузы
+                            </div>
                         </div>
                     </div>
                     <div class='types_cargo_col'>
                         <div class='types_cargo_item'>
-                            <svg class='size_60'>
-                                <use xlink:href="img/sprite.symbol.svg#icon_fill_09">
-                                </use>
-                            </svg>
-                            Контейнеры
+                            <div class='types_cargo_wrapper'>
+                                <svg class='size_60'>
+                                    <use xlink:href="img/sprite.symbol.svg#icon_fill_09">
+                                    </use>
+                                </svg>
+                                Контейнеры
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -413,7 +448,7 @@
         </section>
         <section class='section fleet' id="fleet">
             <div class="container">
-                <h2 class='text-center'>Флот</h2>
+                <h2>Флот</h2>
                 <div class='tabs'>
                     <div class='tabs_nav'>
                         <a href="#tabs_01" class='tabs_nav_item active'>Речной <span>сухогрузный флот</span></a>
@@ -452,14 +487,16 @@
                                                                 <span>Тип судна</span>
                                                                 Многоцелевое сухогрузное судно с двумя закрытыми
                                                                 трюмами,
-                                                                двойными бортами, двойным дном; оснащено винто-рулевыми
+                                                                двойными бортами, двойным дном; оснащено
+                                                                винто-рулевыми
                                                                 колонками
                                                             </div>
                                                         </div>
                                                         <div class='item'>
                                                             <div class='property_item'>
                                                                 <span>Суда проекта</span>
-                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан Краснов,
+                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан
+                                                                Краснов,
                                                                 Капитан
                                                                 Гудович, Капитан Сергеев, Капитан Кадомцев, Капитан
                                                                 Афанасьев,
@@ -551,14 +588,16 @@
                                                                 <span>Тип судна</span>
                                                                 Многоцелевое сухогрузное судно с двумя закрытыми
                                                                 трюмами,
-                                                                двойными бортами, двойным дном; оснащено винто-рулевыми
+                                                                двойными бортами, двойным дном; оснащено
+                                                                винто-рулевыми
                                                                 колонками
                                                             </div>
                                                         </div>
                                                         <div class='item'>
                                                             <div class='property_item'>
                                                                 <span>Суда проекта</span>
-                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан Краснов,
+                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан
+                                                                Краснов,
                                                                 Капитан
                                                                 Гудович, Капитан Сергеев, Капитан Кадомцев, Капитан
                                                                 Афанасьев,
@@ -666,14 +705,16 @@
                                                                 <span>Тип судна</span>
                                                                 Многоцелевое сухогрузное судно с двумя закрытыми
                                                                 трюмами,
-                                                                двойными бортами, двойным дном; оснащено винто-рулевыми
+                                                                двойными бортами, двойным дном; оснащено
+                                                                винто-рулевыми
                                                                 колонками
                                                             </div>
                                                         </div>
                                                         <div class='item'>
                                                             <div class='property_item'>
                                                                 <span>Суда проекта</span>
-                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан Краснов,
+                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан
+                                                                Краснов,
                                                                 Капитан
                                                                 Гудович, Капитан Сергеев, Капитан Кадомцев, Капитан
                                                                 Афанасьев,
@@ -765,14 +806,16 @@
                                                                 <span>Тип судна</span>
                                                                 Многоцелевое сухогрузное судно с двумя закрытыми
                                                                 трюмами,
-                                                                двойными бортами, двойным дном; оснащено винто-рулевыми
+                                                                двойными бортами, двойным дном; оснащено
+                                                                винто-рулевыми
                                                                 колонками
                                                             </div>
                                                         </div>
                                                         <div class='item'>
                                                             <div class='property_item'>
                                                                 <span>Суда проекта</span>
-                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан Краснов,
+                                                                Капитан Рузманкин, Капитан Загрядцев, Капитан
+                                                                Краснов,
                                                                 Капитан
                                                                 Гудович, Капитан Сергеев, Капитан Кадомцев, Капитан
                                                                 Афанасьев,
@@ -951,6 +994,10 @@
                         </a>
                     </li>
                 </ul>
+            </div>
+            <div class='footer_waves'>
+                <div class='wave'></div>
+                <div class='wave'></div>
             </div>
         </footer>
     </main>
