@@ -19,6 +19,8 @@ html {
 }
 
 $color_dark:#0C3551;
+$color_blue:#3372B7;
+$transition:all 0.3s ease;
 
 @font-face {
 	font-family: 'FactorA';
@@ -213,7 +215,7 @@ h3 {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: #0C3551;
+	background: $color_dark;
 	opacity: 0;
 	visibility: hidden;
 	transition: .5s all ease;
@@ -281,6 +283,7 @@ h3 {
 		height: 2px;
 		width: 20px;
 		position: relative;
+		transition: $transition;
 
 		&:after,
 		&:before {
@@ -292,7 +295,7 @@ h3 {
 			width: 20px;
 			height: 2px;
 			background: $color_dark;
-			transition: all 0.3s ease;
+			transition: $transition;
 		}
 
 		&:after {
@@ -301,6 +304,17 @@ h3 {
 
 		&:before {
 			top: -7px;
+		}
+	}
+
+	&:hover:not(.active) {
+		span {
+			background: $color_blue;
+
+			&:after,
+			&:before {
+				background: $color_blue;
+			}
 		}
 	}
 
@@ -695,17 +709,17 @@ h3 {
 	}
 }
 
-// @keyframes wave {
-// 	to {
-// 		transform: translate(-50%, 0);
-// 	}
-// }
+@keyframes wave {
+	to {
+		transform: translate(-50%, 0);
+	}
+}
 
-// @keyframes waveBack {
-// 	to {
-// 		transform: translate(50%, 0);
-// 	}
-// }
+@keyframes waveBack {
+	to {
+		transform: translate(50%, 0);
+	}
+}
 
 .waves_block {
 	position: relative;
@@ -796,9 +810,15 @@ h3 {
 	padding: 20px 40px;
 	text-transform: uppercase;
 	font-feature-settings: 'clig'off, 'liga'off;
-	color: #3372B7;
+	color: $color_blue;
 	border-radius: 100px;
-	border: 2px solid #3372B7;
+	border: 2px solid $color_blue;
+	transition: $transition;
+
+	&:hover:not(.active) {
+		color: $color_dark;
+		border-color: $color_dark;
+	}
 
 	&.active {
 		color: #F94334;
@@ -812,7 +832,7 @@ h3 {
 }
 
 .show_btn {
-	color: #3372B7;
+	color: $color_blue;
 	font-feature-settings: 'clig'off, 'liga'off;
 	font-size: 18px;
 	font-style: normal;
@@ -824,6 +844,7 @@ h3 {
 	gap: 10px;
 	padding: 30px;
 	cursor: pointer;
+	transition: $transition;
 
 	span {
 		&:first-child {
@@ -846,8 +867,14 @@ h3 {
 		background-repeat: no-repeat;
 		background-position: center;
 		background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='9' viewBox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M1.42 0.5L6 5.44467L10.59 0.5L12 2.02227L6 8.5L-6.65404e-08 2.02227L1.42 0.5Z' fill='%233372B7'/%3e%3c/svg%3e ");
-		transition: all 0.3s ease;
+		transition: $transition;
 		background-size: contain;
+	}
+
+	&:hover {
+		&:after {
+			transform: translateY(3px);
+		}
 	}
 
 	&.active {
@@ -872,7 +899,7 @@ h3 {
 	width: 54px;
 	height: 54px;
 	border-radius: 30px;
-	border: 1px solid #0C3551;
+	border: 1px solid $color_dark;
 	background-color: #FFF;
 
 	&:after {
@@ -1175,7 +1202,7 @@ h3 {
 		a {
 			color: rgba(255, 255, 255, 0.60);
 			display: block;
-			transition: all 0.3s ease;
+			transition: $transition;
 
 			&:hover {
 				color: #fff;
@@ -1187,6 +1214,11 @@ h3 {
 			line-height: 160%;
 			color: #fff;
 			text-decoration-line: underline;
+			transition: $transition;
+
+			&:hover {
+				text-decoration: none;
+			}
 		}
 	}
 
@@ -1304,14 +1336,19 @@ textarea.form_input {
 	justify-content: center;
 	text-align: center;
 	border-radius: 100px;
-	background: #3372B7;
+	background: $color_blue;
 	padding: 20px 40px;
 	border: none;
 	cursor: pointer;
+	transition: $transition;
+
+	&:hover {
+		background-color: $color_dark;
+	}
 }
 
 .footer {
-	background: #0C3551;
+	background: $color_dark;
 	color: #fff;
 	padding-top: 26px;
 
@@ -1343,7 +1380,7 @@ textarea.form_input {
 			color: rgba(255, 255, 255, 0.60);
 			font-size: 12px;
 			line-height: 200%;
-			transition: all 0.3s ease;
+			transition: $transition;
 
 			&:hover {
 				color: #fff;
@@ -1368,7 +1405,7 @@ textarea.form_input {
 		height: 54px;
 		border-radius: 80px;
 		border: 0.5px solid rgba(255, 255, 255, 0.30);
-		transition: all 0.3s ease;
+		transition: $transition;
 
 		&:hover {
 			border-color: rgba(255, 255, 255, 0.60);
@@ -1401,14 +1438,14 @@ textarea.form_input {
 
 	&:nth-of-type(1) {
 		--speed: 30;
-		--width: 300;
+		--width: 400;
 		background-image: url("../img/wave_footer_02.svg");
 		opacity: 0.4;
 	}
 
 	&:nth-of-type(2) {
 		--speed: 75;
-		--width: 300;
+		--width: 400;
 		background-image: url("../img/wave_footer_01.svg");
 	}
 
@@ -2037,6 +2074,10 @@ textarea.form_input {
 
 	h3 {
 		font-size: 20px;
+		margin-bottom: 30px;
+	}
+
+	.about_block .right h2 {
 		margin-bottom: 30px;
 	}
 

@@ -89,9 +89,120 @@ window.addEventListener('load', (e) => {
     $(this).prev().slideToggle();
   });
 
-  // Маска для инпутов с номером телефона
-  const phoneInputs = document.querySelectorAll('input[type=tel]');
-  phoneInputs.forEach((input) => {
-    $(input).mask('+7 (999) 999-99-99');
-  });
+  const form = () => {
+    // Маска для инпутов с номером телефона
+    const phoneInputs = document.querySelectorAll('.form_input[type="tel"]');
+    phoneInputs.forEach((input) => {
+      IMask(input, {
+        mask: '+{7}(000)000-00-00',
+      });
+    });
+
+    // валидация
+    const forms = document.querySelectorAll('.validate_form');
+    forms.forEach((form) => {
+      const inputText = form.querySelectorAll('.form_input[type="text"]');
+      const userName = form.querySelector('.form_input[name="fio"]');
+      const userEmail = form.querySelectorAll('.form_input[type="email"]');
+      const userPhone = form.querySelector('.form_input[type="tel"]');
+      const textArea = form.querySelector('.form_textarea');
+
+      if (inputText) {
+        for (let i = 0; i < inputText.length; i++) {
+          inputText[i].addEventListener('input', removeErr);
+        }
+      }
+      if (userName) {
+        userName.addEventListener('input', removeErr);
+      }
+      if (userEmail) {
+        for (let i = 0; i < userEmail.length; i++) {
+          userEmail[i].addEventListener('input', removeErr);
+        }
+      }
+      if (userPhone) {
+        userPhone.addEventListener('input', removeErr);
+      }
+      if (textArea) {
+        textArea.addEventListener('input', removeErr);
+      }
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        if (inputText) {
+          for (let i = 0; i < inputText.length; i++) {
+            if (!inputText[i].hasAttribute('disabled')) {
+              if (inputText[i].value.trim().length < 1) {
+                inputText[i]
+                  .closest('.form_input_group')
+                  .classList.add('error');
+              }
+            }
+          }
+        }
+        if (userName && !userName.hasAttribute('disabled')) {
+          if (userName.value.trim().length < 1) {
+            userName.closest('.form_input_group').classList.add('error');
+          }
+        }
+        if (userEmail) {
+          for (let i = 0; i < userEmail.length; i++) {
+            if (!userEmail[i].hasAttribute('disabled')) {
+              validEmailFunc(userEmail[i]);
+            }
+          }
+        }
+        if (userPhone && !userPhone.hasAttribute('disabled')) {
+          if (userPhone.value.replace(/\D/g, '').length < 11) {
+            userPhone.closest('.form_input_group').classList.add('error');
+          }
+        }
+        if (textArea) {
+          if (textArea.value.trim().length < 1) {
+            textArea.closest('.form_input_group').classList.add('error');
+          }
+        }
+
+        const formErrors = form.querySelector('.error');
+        if (formErrors) {
+          $('html, body').animate(
+            {
+              scrollTop: $('.error').offset().top - 120,
+            },
+            100
+          );
+          return;
+        }
+
+        //backend ajax
+
+        return false;
+      });
+    });
+  };
+
+  form();
+
+  function removeErr(e) {
+    e.target.closest('.form_input_group').classList.remove('error');
+  }
+
+  // проверка валидности email
+  function validEmailFunc(userEmail) {
+    const userEmailVal = userEmail.value;
+    if (userEmailVal.length < 1) {
+      userEmail.closest('.form_input_group').classList.add('error');
+      userEmail.nextElementSibling.innerHTML = 'Заполните поле';
+    } else {
+      var regEx =
+        /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var validEmail = regEx.test(userEmailVal);
+      if (!validEmail) {
+        userEmail.closest('.form_input_group').classList.add('error');
+        userEmail.nextElementSibling.innerHTML =
+          'Пожалуйста, введите корректный адрес электронной почты.';
+      }
+    }
+  }
 });

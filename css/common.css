@@ -255,6 +255,7 @@ h3 {
   height: 2px;
   width: 20px;
   position: relative;
+  transition: all 0.3s ease;
 }
 .menu_btn span:after, .menu_btn span:before {
   content: "";
@@ -272,6 +273,12 @@ h3 {
 }
 .menu_btn span:before {
   top: -7px;
+}
+.menu_btn:hover:not(.active) span {
+  background: #3372B7;
+}
+.menu_btn:hover:not(.active) span:after, .menu_btn:hover:not(.active) span:before {
+  background: #3372B7;
 }
 .menu_btn.active span {
   background: transparent;
@@ -622,6 +629,16 @@ h3 {
   left: 58px;
 }
 
+@keyframes wave {
+  to {
+    transform: translate(-50%, 0);
+  }
+}
+@keyframes waveBack {
+  to {
+    transform: translate(50%, 0);
+  }
+}
 .waves_block {
   position: relative;
   height: 540px;
@@ -707,6 +724,11 @@ h3 {
   color: #3372B7;
   border-radius: 100px;
   border: 2px solid #3372B7;
+  transition: all 0.3s ease;
+}
+.tabs_nav_item:hover:not(.active) {
+  color: #0C3551;
+  border-color: #0C3551;
 }
 .tabs_nav_item.active {
   color: #F94334;
@@ -731,6 +753,7 @@ h3 {
   gap: 10px;
   padding: 30px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 .show_btn span:first-child {
   display: inline-flex;
@@ -751,6 +774,9 @@ h3 {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='12' height='9' viewBox='0 0 12 9' fill='none' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M1.42 0.5L6 5.44467L10.59 0.5L12 2.02227L6 8.5L-6.65404e-08 2.02227L1.42 0.5Z' fill='%233372B7'/%3e%3c/svg%3e ");
   transition: all 0.3s ease;
   background-size: contain;
+}
+.show_btn:hover:after {
+  transform: translateY(3px);
 }
 .show_btn.active span:first-child {
   display: none;
@@ -1044,6 +1070,10 @@ h3 {
   line-height: 160%;
   color: #fff;
   text-decoration-line: underline;
+  transition: all 0.3s ease;
+}
+.contacts_item .text .link:hover {
+  text-decoration: none;
 }
 
 .form_input_group {
@@ -1121,6 +1151,10 @@ textarea.form_input {
   padding: 20px 40px;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #0C3551;
 }
 
 .footer {
@@ -1206,13 +1240,13 @@ textarea.form_input {
 }
 .wave:nth-of-type(1) {
   --speed: 30;
-  --width: 300;
+  --width: 400;
   background-image: url("../img/wave_footer_02.svg");
   opacity: 0.4;
 }
 .wave:nth-of-type(2) {
   --speed: 75;
-  --width: 300;
+  --width: 400;
   background-image: url("../img/wave_footer_01.svg");
 }
 
@@ -1695,6 +1729,9 @@ textarea.form_input {
   }
   h3 {
     font-size: 20px;
+    margin-bottom: 30px;
+  }
+  .about_block .right h2 {
     margin-bottom: 30px;
   }
   .header_top {
