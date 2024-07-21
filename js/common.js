@@ -1,28 +1,4 @@
 window.addEventListener('load', (e) => {
-  // var rellax = new Rellax('.rellax');
-
-  // let offset
-  // if (window.innerWidth > 991) {
-  //     offset = 150;
-  // } else {
-  //     offset = 20;
-  // }
-
-  // AOS.init({
-  //     easing: 'ease',
-  //     delay: 100,
-  //     once: true,
-  //     duration: 1000,
-  //     offset: offset,
-  // });
-
-  // var scene = document.querySelectorAll('.parallax');
-  // if (scene) {
-  //     scene.forEach(element => {
-  //         var parallaxInstance = new Parallax(element)
-  //     });
-  // }
-
   //   menu
   $('.menu_btn').on('click', function (e) {
     $('.menu_btn').toggleClass('active');
@@ -89,12 +65,58 @@ window.addEventListener('load', (e) => {
     $(this).prev().slideToggle();
   });
 
+  // анимация
+  let offset;
+  if (window.innerWidth > 991) {
+    offset = 150;
+  } else {
+    offset = 20;
+  }
+
+  AOS.init({
+    easing: 'ease',
+    delay: 100,
+    once: true,
+    duration: 1000,
+    offset: offset,
+  });
+
+  lax.init();
+  lax.addDriver(
+    'scrollY',
+    function () {
+      return window.scrollY;
+    },
+    {
+      frameStep: 1,
+      inertiaEnabled: true,
+    }
+  );
+
+  lax.addElements('.ship_01 img', {
+    scrollY: {
+      translateX: [
+        ['elInY', 'elCenterY+100', 'elOutY'],
+        [0, '-100', '-200'],
+      ],
+    },
+  });
+
+  lax.addElements('.ship_02 img', {
+    scrollY: {
+      translateX: [
+        ['elInY', 'elCenterY+100', 'elOutY'],
+        [0, '100', '200'],
+      ],
+    },
+  });
+
   const form = () => {
     // Маска для инпутов с номером телефона
     const phoneInputs = document.querySelectorAll('.form_input[type="tel"]');
     phoneInputs.forEach((input) => {
       IMask(input, {
-        mask: '+{7}(000)000-00-00',
+        mask: '+{7} (000) 000-00-00',
       });
     });
 

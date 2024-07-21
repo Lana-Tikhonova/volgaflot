@@ -70,6 +70,7 @@ body {
 	background-color: #F4F7F7;
 	color: $color_dark;
 	height: 100%;
+	overflow-x: hidden;
 
 	&.locked {
 		overflow: hidden;
@@ -265,7 +266,11 @@ h3 {
 .menu_content {
 	height: calc(100% - 100px);
 	overflow: auto;
+	scrollbar-width: none;
 
+	&::-webkit-scrollbar {
+		display: none;
+	}
 }
 
 .menu_btn {
@@ -333,6 +338,56 @@ h3 {
 				background-color: #fff;
 				transform: rotate(135deg);
 			}
+		}
+	}
+}
+
+@keyframes title {
+	to {
+		transform: translate3d(0px, 0em, 0px);
+	}
+}
+
+body.animate_show {
+	.home_title {
+		.line {
+			span {
+				top: -0.1em;
+				transform: translate3d(0, 100%, 0);
+				animation: title 0.9s ease-in-out forwards;
+				animation-delay: .1s;
+			}
+
+			&:nth-child(2) span {
+				animation-delay: 0.2s;
+			}
+
+			&:nth-child(3) span {
+				animation-delay: 0.3s;
+			}
+
+			&:nth-child(4) span {
+				animation-delay: 0.4s;
+			}
+		}
+	}
+}
+
+.home_title {
+	display: flex;
+	width: fit-content;
+	flex-direction: column;
+	will-change: transform;
+
+	.line {
+		display: flex;
+		text-align: start;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+
+		span {
+			position: relative;
 		}
 	}
 }
@@ -420,6 +475,40 @@ h3 {
 	}
 }
 
+.wave_bg {
+	z-index: -1;
+	position: absolute;
+	top: 23px;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 321px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	opacity: 0.2;
+	overflow: hidden;
+
+	&.aos-animate {
+		svg path {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	svg {
+		display: block;
+		position: relative;
+		left: -338px;
+		min-width: calc(100% + 338px);
+
+		path {
+			stroke-dashoffset: 2366.766845703125px;
+			stroke-dasharray: 2366.766845703125px;
+			transition: stroke-dashoffset 2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+		}
+	}
+}
+
 .advantages_block {
 	position: relative;
 
@@ -428,20 +517,20 @@ h3 {
 		z-index: 1;
 	}
 
-	&:before {
-		content: '';
-		display: block;
-		position: absolute;
-		top: -2px;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-repeat: repeat;
-		background-position: center;
-		background-image: url(../img/wave_01.svg);
-		background-position: top;
-		opacity: 0.5;
-	}
+	// &:before {
+	// 	content: '';
+	// 	display: block;
+	// 	position: absolute;
+	// 	top: -2px;
+	// 	left: 0;
+	// 	width: 100%;
+	// 	height: 100%;
+	// 	background-repeat: repeat;
+	// 	background-position: center;
+	// 	background-image: url(../img/wave_01.svg);
+	// 	background-position: top;
+	// 	opacity: 0.5;
+	// }
 }
 
 .advantages_list {
@@ -684,6 +773,51 @@ h3 {
 	}
 }
 
+
+@keyframes boat_01 {
+	0% {
+		transform: rotate(0deg) translateY(0);
+	}
+
+	25% {
+		transform: rotate(-1deg) translateY(-3px);
+	}
+
+	50% {
+		transform: rotate(0deg) translateY(-5px);
+	}
+
+	75% {
+		transform: rotate(1deg) translateY(-3px);
+	}
+
+	100% {
+		transform: rotate(0deg) translateY(0);
+	}
+}
+
+@keyframes boat_02 {
+	0% {
+		transform: rotate(0deg) translateY(0);
+	}
+
+	25% {
+		transform: rotate(1deg) translateY(-3px);
+	}
+
+	50% {
+		transform: rotate(0deg) translateY(-5px);
+	}
+
+	75% {
+		transform: rotate(-1deg) translateY(-3px);
+	}
+
+	100% {
+		transform: rotate(0deg) translateY(0);
+	}
+}
+
 .waves_wrapper {
 	position: relative;
 
@@ -696,28 +830,38 @@ h3 {
 		z-index: 1;
 
 		&_01 {
-			width: 526px;
 			top: 254px;
 			right: 38px;
+			animation: boat_01 2s linear infinite;
+
+			img {
+				width: 526px;
+
+			}
 		}
 
 		&_02 {
-			width: 456px;
 			top: 34px;
 			left: 58px;
+			animation: boat_02 3s linear infinite;
+
+			img {
+				width: 456px;
+
+			}
 		}
 	}
 }
 
 @keyframes wave {
-	to {
-		transform: translate(-50%, 0);
+	100% {
+		transform: translateX(-50%);
 	}
 }
 
 @keyframes waveBack {
 	to {
-		transform: translate(50%, 0);
+		transform: translateX(50%);
 	}
 }
 
@@ -730,12 +874,11 @@ h3 {
 		position: absolute;
 		background-position: center;
 		background-repeat: repeat;
-		animation: var(--animation) calc(var(--speed, 0) * 1s) infinite linear;
-		width: calc(var(--width, 0) * 1vw);
+		animation: var(--animation) calc(var(--speed, 0) * 1s) infinite linear alternate;
+		width: 200%;
 
 		&:nth-of-type(1) {
 			--speed: 15;
-			--width: 200;
 			--animation: wave;
 			left: 0;
 			top: 0;
@@ -745,7 +888,6 @@ h3 {
 
 		&:nth-of-type(2) {
 			--speed: 20;
-			--width: 200;
 			--animation: waveBack;
 			right: 0;
 			top: 106px;
@@ -755,7 +897,6 @@ h3 {
 
 		&:nth-of-type(3) {
 			--speed: 30;
-			--width: 200;
 			--animation: wave;
 			left: 0;
 			top: 211px;
@@ -765,7 +906,6 @@ h3 {
 
 		&:nth-of-type(4) {
 			--speed: 20;
-			--width: 200;
 			--animation: waveBack;
 			right: 0;
 			bottom: 117px;
@@ -775,7 +915,6 @@ h3 {
 
 		&:nth-of-type(5) {
 			--speed: 15;
-			--width: 200;
 			--animation: wave;
 			left: 0;
 			bottom: -21px;
@@ -1230,6 +1369,10 @@ h3 {
 	margin-bottom: 25px;
 
 	&.error {
+		.form_text {
+			color: #F94334;
+		}
+
 		.text_error {
 			display: block;
 		}
@@ -1307,6 +1450,7 @@ h3 {
 textarea.form_input {
 	height: 113px;
 	resize: none;
+	display: block;
 }
 
 .form_text {
@@ -1409,12 +1553,17 @@ textarea.form_input {
 
 		&:hover {
 			border-color: rgba(255, 255, 255, 0.60);
+
+			svg {
+				transform: scale(1.1);
+			}
 		}
 	}
 
 	svg {
 		width: 24px;
 		height: 24px;
+		transition: $transition;
 	}
 
 }
@@ -1434,18 +1583,16 @@ textarea.form_input {
 	left: 0;
 	position: absolute;
 	right: 0;
-	width: calc(var(--width, 0) * 1vw);
+	width: 400%;
 
 	&:nth-of-type(1) {
 		--speed: 30;
-		--width: 400;
 		background-image: url("../img/wave_footer_02.svg");
 		opacity: 0.4;
 	}
 
 	&:nth-of-type(2) {
 		--speed: 75;
-		--width: 400;
 		background-image: url("../img/wave_footer_01.svg");
 	}
 
@@ -1851,6 +1998,11 @@ textarea.form_input {
 }
 
 @media screen and (max-width:768px) {
+	.wave_bg {
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
 	.about_block .right .text {
 		font-size: 18px;
 	}
@@ -2180,16 +2332,22 @@ textarea.form_input {
 
 	.waves_wrapper {
 		.ship_01 {
-			width: 532px;
-			max-width: initial;
 			right: -317px;
 			top: 143px;
+
+			img {
+				max-width: initial;
+				width: 532px;
+			}
 		}
 
 		.ship_02 {
-			width: 275px;
 			top: 28px;
 			left: -128px;
+
+			img {
+				width: 275px;
+			}
 		}
 	}
 

@@ -55,6 +55,7 @@ body {
   background-color: #F4F7F7;
   color: #0C3551;
   height: 100%;
+  overflow-x: hidden;
 }
 body.locked {
   overflow: hidden;
@@ -238,6 +239,10 @@ h3 {
 .menu_content {
   height: calc(100% - 100px);
   overflow: auto;
+  scrollbar-width: none;
+}
+.menu_content::-webkit-scrollbar {
+  display: none;
 }
 
 .menu_btn {
@@ -292,6 +297,45 @@ h3 {
   top: 0;
   background-color: #fff;
   transform: rotate(135deg);
+}
+
+@keyframes title {
+  to {
+    transform: translate3d(0px, 0em, 0px);
+  }
+}
+body.animate_show .home_title .line span {
+  top: -0.1em;
+  transform: translate3d(0, 100%, 0);
+  animation: title 0.9s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+body.animate_show .home_title .line:nth-child(2) span {
+  animation-delay: 0.2s;
+}
+body.animate_show .home_title .line:nth-child(3) span {
+  animation-delay: 0.3s;
+}
+body.animate_show .home_title .line:nth-child(4) span {
+  animation-delay: 0.4s;
+}
+
+.home_title {
+  display: flex;
+  width: -moz-fit-content;
+  width: fit-content;
+  flex-direction: column;
+  will-change: transform;
+}
+.home_title .line {
+  display: flex;
+  text-align: start;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.home_title .line span {
+  position: relative;
 }
 
 .about {
@@ -365,26 +409,41 @@ h3 {
   line-height: 110%;
 }
 
+.wave_bg {
+  z-index: -1;
+  position: absolute;
+  top: 23px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 321px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0.2;
+  overflow: hidden;
+}
+.wave_bg.aos-animate svg path {
+  stroke-dashoffset: 0;
+}
+.wave_bg svg {
+  display: block;
+  position: relative;
+  left: -338px;
+  min-width: calc(100% + 338px);
+}
+.wave_bg svg path {
+  stroke-dashoffset: 2366.7668457031px;
+  stroke-dasharray: 2366.7668457031px;
+  transition: stroke-dashoffset 2s cubic-bezier(0.47, 0, 0.745, 0.715) 0s;
+}
+
 .advantages_block {
   position: relative;
 }
 .advantages_block .container {
   position: relative;
   z-index: 1;
-}
-.advantages_block:before {
-  content: "";
-  display: block;
-  position: absolute;
-  top: -2px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-repeat: repeat;
-  background-position: center;
-  background-image: url(../img/wave_01.svg);
-  background-position: top;
-  opacity: 0.5;
 }
 
 .advantages_list {
@@ -608,6 +667,40 @@ h3 {
   border-right: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+@keyframes boat_01 {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(-1deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(-5px);
+  }
+  75% {
+    transform: rotate(1deg) translateY(-3px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+}
+@keyframes boat_02 {
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+  25% {
+    transform: rotate(1deg) translateY(-3px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(-5px);
+  }
+  75% {
+    transform: rotate(-1deg) translateY(-3px);
+  }
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+}
 .waves_wrapper {
   position: relative;
 }
@@ -619,24 +712,30 @@ h3 {
   z-index: 1;
 }
 .waves_wrapper .ship_01 {
-  width: 526px;
   top: 254px;
   right: 38px;
+  animation: boat_01 2s linear infinite;
+}
+.waves_wrapper .ship_01 img {
+  width: 526px;
 }
 .waves_wrapper .ship_02 {
-  width: 456px;
   top: 34px;
   left: 58px;
+  animation: boat_02 3s linear infinite;
+}
+.waves_wrapper .ship_02 img {
+  width: 456px;
 }
 
 @keyframes wave {
-  to {
-    transform: translate(-50%, 0);
+  100% {
+    transform: translateX(-50%);
   }
 }
 @keyframes waveBack {
   to {
-    transform: translate(50%, 0);
+    transform: translateX(50%);
   }
 }
 .waves_block {
@@ -648,12 +747,11 @@ h3 {
   position: absolute;
   background-position: center;
   background-repeat: repeat;
-  animation: var(--animation) calc(var(--speed, 0) * 1s) infinite linear;
-  width: calc(var(--width, 0) * 1vw);
+  animation: var(--animation) calc(var(--speed, 0) * 1s) infinite linear alternate;
+  width: 200%;
 }
 .waves_block div:nth-of-type(1) {
   --speed: 15;
-  --width: 200;
   --animation: wave;
   left: 0;
   top: 0;
@@ -662,7 +760,6 @@ h3 {
 }
 .waves_block div:nth-of-type(2) {
   --speed: 20;
-  --width: 200;
   --animation: waveBack;
   right: 0;
   top: 106px;
@@ -671,7 +768,6 @@ h3 {
 }
 .waves_block div:nth-of-type(3) {
   --speed: 30;
-  --width: 200;
   --animation: wave;
   left: 0;
   top: 211px;
@@ -680,7 +776,6 @@ h3 {
 }
 .waves_block div:nth-of-type(4) {
   --speed: 20;
-  --width: 200;
   --animation: waveBack;
   right: 0;
   bottom: 117px;
@@ -689,7 +784,6 @@ h3 {
 }
 .waves_block div:nth-of-type(5) {
   --speed: 15;
-  --width: 200;
   --animation: wave;
   left: 0;
   bottom: -21px;
@@ -1080,6 +1174,9 @@ h3 {
   display: block;
   margin-bottom: 25px;
 }
+.form_input_group.error .form_text {
+  color: #F94334;
+}
 .form_input_group.error .text_error {
   display: block;
 }
@@ -1118,6 +1215,7 @@ h3 {
 textarea.form_input {
   height: 113px;
   resize: none;
+  display: block;
 }
 
 .form_text {
@@ -1216,9 +1314,13 @@ textarea.form_input {
 .social_list a:hover {
   border-color: rgba(255, 255, 255, 0.6);
 }
+.social_list a:hover svg {
+  transform: scale(1.1);
+}
 .social_list svg {
   width: 24px;
   height: 24px;
+  transition: all 0.3s ease;
 }
 
 .footer_waves {
@@ -1236,17 +1338,15 @@ textarea.form_input {
   left: 0;
   position: absolute;
   right: 0;
-  width: calc(var(--width, 0) * 1vw);
+  width: 400%;
 }
 .wave:nth-of-type(1) {
   --speed: 30;
-  --width: 400;
   background-image: url("../img/wave_footer_02.svg");
   opacity: 0.4;
 }
 .wave:nth-of-type(2) {
   --speed: 75;
-  --width: 400;
   background-image: url("../img/wave_footer_01.svg");
 }
 
@@ -1557,6 +1657,10 @@ textarea.form_input {
   }
 }
 @media screen and (max-width: 768px) {
+  .wave_bg {
+    top: 50%;
+    transform: translateY(-50%);
+  }
   .about_block .right .text {
     font-size: 18px;
   }
@@ -1808,15 +1912,19 @@ textarea.form_input {
     bottom: -43px;
   }
   .waves_wrapper .ship_01 {
-    width: 532px;
-    max-width: initial;
     right: -317px;
     top: 143px;
   }
+  .waves_wrapper .ship_01 img {
+    max-width: initial;
+    width: 532px;
+  }
   .waves_wrapper .ship_02 {
-    width: 275px;
     top: 28px;
     left: -128px;
+  }
+  .waves_wrapper .ship_02 img {
+    width: 275px;
   }
   .tabs_nav_item {
     font-size: 14px;
