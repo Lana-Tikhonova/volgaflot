@@ -4,6 +4,9 @@ html {
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 	-webkit-text-size-adjust: none;
+	overflow-x: hidden;
+	overflow-y: auto;
+	scroll-behavior: smooth;
 
 	&.locked {
 		overflow: hidden;
@@ -156,29 +159,28 @@ h3 {
 }
 
 .header {
-	background-image: url(../img/header_img.png);
-	background-position: center right;
-	background-repeat: no-repeat;
-	background-size: contain;
 	height: 646px;
 	display: flex;
 	flex-direction: column;
 	position: relative;
+}
 
-	.img {
-		position: absolute;
-		top: 0;
-		right: 0;
-		height: 100%;
-		width: 1050px;
-		display: flex;
-		justify-content: flex-end;
-
-		img {
-			height: 100%;
-			object-fit: contain;
-		}
-	}
+.header_img {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	max-width: 1440px;
+	height: 100%;
+	background-image: url(../img/header_img.png);
+	background-position: center right;
+	background-repeat: no-repeat;
+	background-size: contain;
+	z-index: -1;
 }
 
 .header_top {
@@ -486,7 +488,7 @@ body.animate_show {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	opacity: 0.2;
+	opacity: 0.15;
 	overflow: hidden;
 
 	&.aos-animate {
@@ -1599,7 +1601,7 @@ textarea.form_input {
 }
 
 @media screen and (max-width:1300px) {
-	.header {
+	.header_img {
 		background-position: center left 300px;
 	}
 
@@ -1663,7 +1665,7 @@ textarea.form_input {
 }
 
 @media screen and (max-width:1200px) {
-	.header {
+	.header_img {
 		background-size: cover;
 	}
 
@@ -2024,8 +2026,11 @@ textarea.form_input {
 	}
 
 	.header {
-		background: #fff;
 		height: auto;
+	}
+
+	.header_img {
+		display: none;
 	}
 
 	.header_bottom {
