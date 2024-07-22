@@ -45,6 +45,7 @@ window.addEventListener('load', (e) => {
     spaceBetween: 20,
     speed: 600,
     effect: 'fade',
+    loop: true,
     // autoHeight: true,
     watchOverflow: true,
     watchSlidesVisibility: true,
@@ -93,14 +94,14 @@ window.addEventListener('load', (e) => {
     }
   );
 
-  // lax.addElements('.ship_01 img', {
-  //   scrollY: {
-  //     translateX: [
-  //       ['elInY', 'elCenterY+100', 'elOutY'],
-  //       [0, '-100', '-200'],
-  //     ],
-  //   },
-  // });
+  lax.addElements('.ship_01 img', {
+    scrollY: {
+      translateX: [
+        ['elInY', 'elCenterY+100', 'elOutY'],
+        [0, '-100', '-200'],
+      ],
+    },
+  });
 
   lax.addElements('.ship_02 img', {
     scrollY: {
@@ -125,9 +126,10 @@ window.addEventListener('load', (e) => {
     forms.forEach((form) => {
       const inputText = form.querySelectorAll('.form_input[type="text"]');
       const userName = form.querySelector('.form_input[name="fio"]');
-      const userEmail = form.querySelectorAll('.form_input[type="email"]');
+      const userEmail = form.querySelector('.form_input[type="email"]');
       const userPhone = form.querySelector('.form_input[type="tel"]');
       const textArea = form.querySelector('.form_textarea');
+      const formAfter = document.querySelector('.form_after');
 
       if (inputText) {
         for (let i = 0; i < inputText.length; i++) {
@@ -138,9 +140,7 @@ window.addEventListener('load', (e) => {
         userName.addEventListener('input', removeErr);
       }
       if (userEmail) {
-        for (let i = 0; i < userEmail.length; i++) {
-          userEmail[i].addEventListener('input', removeErr);
-        }
+        userEmail.addEventListener('input', removeErr);
       }
       if (userPhone) {
         userPhone.addEventListener('input', removeErr);
@@ -169,10 +169,8 @@ window.addEventListener('load', (e) => {
           }
         }
         if (userEmail) {
-          for (let i = 0; i < userEmail.length; i++) {
-            if (!userEmail[i].hasAttribute('disabled')) {
-              validEmailFunc(userEmail[i]);
-            }
+          if (!userEmail.hasAttribute('disabled')) {
+            validEmailFunc(userEmail);
           }
         }
         if (userPhone && !userPhone.hasAttribute('disabled')) {
@@ -198,13 +196,28 @@ window.addEventListener('load', (e) => {
         }
 
         //backend ajax
+        form.classList.add('hide');
+        formAfter.classList.add('show');
+        form.reset();
 
-        return false;
+        // fetch(e.target.action, {
+        //   method: 'POST',
+        //   body: new FormData(form),
+        // })
+        //   .then((response) => response.json())
+        //   .then((body) => {
+        //   })
+        //   .catch((error) => {});
       });
     });
   };
 
   form();
+
+  $('.form_after .btn').on('click', function (e) {
+    $('.form_after').removeClass('show');
+    $('.form').removeClass('hide');
+  });
 
   function removeErr(e) {
     e.target.closest('.form_input_group').classList.remove('error');
