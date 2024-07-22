@@ -93,14 +93,14 @@ window.addEventListener('load', (e) => {
     }
   );
 
-  lax.addElements('.ship_01 img', {
-    scrollY: {
-      translateX: [
-        ['elInY', 'elCenterY+100', 'elOutY'],
-        [0, '-100', '-200'],
-      ],
-    },
-  });
+  // lax.addElements('.ship_01 img', {
+  //   scrollY: {
+  //     translateX: [
+  //       ['elInY', 'elCenterY+100', 'elOutY'],
+  //       [0, '-100', '-200'],
+  //     ],
+  //   },
+  // });
 
   lax.addElements('.ship_02 img', {
     scrollY: {
