@@ -1030,10 +1030,12 @@ body.animate_show .home_title .line:nth-child(4) span {
   font-weight: 700;
   line-height: 135%;
 }
+.fleet_item .property_item:not(:last-of-type) {
+  margin-bottom: 10px;
+}
 .fleet_item .property_item.nowrap {
   display: flex;
   gap: 20px;
-  margin-bottom: 10px;
 }
 .fleet_item .property_item.nowrap span {
   max-width: 124px;

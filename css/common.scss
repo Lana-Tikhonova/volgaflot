@@ -1200,10 +1200,13 @@ body.animate_show {
 		font-weight: 700;
 		line-height: 135%;
 
+		&:not(:last-of-type) {
+			margin-bottom: 10px;
+		}
+
 		&.nowrap {
 			display: flex;
 			gap: 20px;
-			margin-bottom: 10px;
 
 			span {
 				max-width: 124px;
