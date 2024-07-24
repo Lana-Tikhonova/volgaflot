@@ -307,22 +307,6 @@ h3 {
     transform: translate3d(0px, 0em, 0px);
   }
 }
-body.animate_show .home_title .line span {
-  top: -0.1em;
-  transform: translate3d(0, 100%, 0);
-  animation: title 0.9s ease-in-out forwards;
-  animation-delay: 0.1s;
-}
-body.animate_show .home_title .line:nth-child(2) span {
-  animation-delay: 0.2s;
-}
-body.animate_show .home_title .line:nth-child(3) span {
-  animation-delay: 0.3s;
-}
-body.animate_show .home_title .line:nth-child(4) span {
-  animation-delay: 0.4s;
-}
-
 .home_title {
   display: flex;
   width: -moz-fit-content;
@@ -339,6 +323,19 @@ body.animate_show .home_title .line:nth-child(4) span {
 }
 .home_title .line span {
   position: relative;
+  top: -0.1em;
+  transform: translate3d(0, 100%, 0);
+  animation: title 0.9s ease-in-out forwards;
+  animation-delay: 0.1s;
+}
+.home_title .line:nth-child(2) span {
+  animation-delay: 0.2s;
+}
+.home_title .line:nth-child(3) span {
+  animation-delay: 0.3s;
+}
+.home_title .line:nth-child(4) span {
+  animation-delay: 0.4s;
 }
 
 .about {

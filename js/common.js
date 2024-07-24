@@ -40,24 +40,26 @@ window.addEventListener('load', (e) => {
   });
 
   //   слайдер
-  const fleetSlider = new Swiper('.fleet_slider', {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    speed: 600,
-    effect: 'fade',
-    loop: true,
-    // autoHeight: true,
-    watchOverflow: true,
-    watchSlidesVisibility: true,
-    watchSlidesProgress: true,
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'fraction',
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
+  const fleetSliders = document.querySelectorAll('.fleet_slider');
+  fleetSliders.forEach((fleetSliderEl) => {
+    const fleetSlider = new Swiper(fleetSliderEl, {
+      slidesPerView: 1,
+      spaceBetween: 20,
+      speed: 400,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true,
+      },
+      loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'fraction',
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+    });
   });
 
   //   скрыть/показать контент в слайдере

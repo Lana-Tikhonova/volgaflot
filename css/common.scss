@@ -350,31 +350,6 @@ h3 {
 	}
 }
 
-body.animate_show {
-	.home_title {
-		.line {
-			span {
-				top: -0.1em;
-				transform: translate3d(0, 100%, 0);
-				animation: title 0.9s ease-in-out forwards;
-				animation-delay: .1s;
-			}
-
-			&:nth-child(2) span {
-				animation-delay: 0.2s;
-			}
-
-			&:nth-child(3) span {
-				animation-delay: 0.3s;
-			}
-
-			&:nth-child(4) span {
-				animation-delay: 0.4s;
-			}
-		}
-	}
-}
-
 .home_title {
 	display: flex;
 	width: fit-content;
@@ -390,6 +365,22 @@ body.animate_show {
 
 		span {
 			position: relative;
+			top: -0.1em;
+			transform: translate3d(0, 100%, 0);
+			animation: title 0.9s ease-in-out forwards;
+			animation-delay: .1s;
+		}
+
+		&:nth-child(2) span {
+			animation-delay: 0.2s;
+		}
+
+		&:nth-child(3) span {
+			animation-delay: 0.3s;
+		}
+
+		&:nth-child(4) span {
+			animation-delay: 0.4s;
 		}
 	}
 }
